@@ -11,11 +11,21 @@ import MyPage from '@/views/MyPage.vue'
 import FriendPage from '@/views/FriendPage.vue'
 import NotFound from '@/views/NotFound.vue'
 
+import RankingPage from '@/views/second/RankingPage.vue'
+import RecPage from '@/views/second/RecPage.vue'
+import SongList from '@/views/second/SongList.vue'
+
 // 4.定义路由规则：路径 和 页面（组件） 一一对应
 const routes = [
-  { path: '/find', component: FindPage },
+  { path: '/find', component: FindPage, children:[
+    { path:'/',redirect:'/find/songlist' },
+    { path:'/find/rank',component:RankingPage },
+    { path:'/find/rec',component:RecPage },
+    { path:'/find/songlist',component:SongList },
+  ]},
   { path: '/my', component: MyPage },
-  { path: '/friend', component: FriendPage },
+  { path: '/friend', name:'friend', component: FriendPage },
+  { path: '/friend/:name/:age', component: FriendPage },
   { path: '/notfound', component: NotFound },
 ]
 
